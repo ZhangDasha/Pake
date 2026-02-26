@@ -1,0 +1,265 @@
+{
+  "timestamp": "2026-02-26T16:35:46Z",
+  "scan_summary": {
+    "total_files_estimated": 95,
+    "scanned_files": 70,
+    "coverage_percent": 74,
+    "truncated": false
+  },
+  "project": {
+    "name": "Pake",
+    "description": "One-command tool to convert any webpage into a lightweight desktop app (macOS, Windows, Linux)",
+    "version": "3.9.1",
+    "repository": "https://github.com/tw93/pake.git",
+    "tech_stack": ["Tauri v2", "Rust", "TypeScript", "Node.js", "Rollup"]
+  },
+  "ignore_patterns": [
+    "node_modules/**",
+    ".git/**",
+    ".github/**",
+    "dist/**",
+    "build/**",
+    ".next/**",
+    "__pycache__/**",
+    "*.lock",
+    "*.log",
+    "*.bin",
+    "*.pdf",
+    "*.png",
+    "*.jpg",
+    "*.jpeg",
+    "*.gif",
+    "*.mp4",
+    "*.zip",
+    "*.tar",
+    "*.gz",
+    "*.dmg",
+    "*.app",
+    "*.msi",
+    "*.deb",
+    "*.AppImage",
+    "*.desktop",
+    "src-tauri/.cargo/**",
+    "src-tauri/.pake/**",
+    "src-tauri/gen/**",
+    "src-tauri/target/**"
+  ],
+  "modules": [
+    {
+      "name": "bin",
+      "path": "bin/",
+      "language": "TypeScript",
+      "description": "CLI tool - parses arguments and drives the build process",
+      "entry_points": [
+        "bin/cli.ts",
+        "bin/dev.ts"
+      ],
+      "interfaces": [
+        "bin/types.ts - PakeCliOptions, PakeAppOptions, WindowConfig",
+        "bin/options/index.ts - Option processing"
+      ],
+      "tests": [
+        "tests/unit/file-finding.test.js",
+        "tests/integration/workflow-paths.test.js",
+        "tests/index.js"
+      ],
+      "important_paths": [
+        "bin/builders/ - Platform-specific build logic",
+        "bin/helpers/ - Config merging and Tauri helpers",
+        "bin/utils/ - Utilities (name, platform, URL, etc.)",
+        "bin/options/ - CLI option processing"
+      ],
+      "key_files": [
+        "bin/cli.ts",
+        "bin/types.ts",
+        "bin/defaults.ts",
+        "bin/builders/BaseBuilder.ts",
+        "bin/builders/BuilderProvider.ts",
+        "bin/builders/MacBuilder.ts",
+        "bin/builders/WinBuilder.ts",
+        "bin/builders/LinuxBuilder.ts",
+        "bin/options/index.ts",
+        "bin/helpers/merge.ts",
+        "bin/helpers/tauriConfig.ts"
+      ],
+      "coverage": {
+        "scanned": 24,
+        "total": 24,
+        "percent": 100
+      },
+      "gaps": []
+    },
+    {
+      "name": "src-tauri",
+      "path": "src-tauri/",
+      "language": "Rust",
+      "description": "Tauri desktop application - wraps web content in native WebView",
+      "entry_points": [
+        "src-tauri/src/main.rs",
+        "src-tauri/src/lib.rs"
+      ],
+      "interfaces": [
+        "src-tauri/src/app/invoke.rs - Tauri command handlers (download, notification, etc.)",
+        "src-tauri/src/app/window.rs - Window creation and configuration",
+        "src-tauri/src/app/setup.rs - Plugin initialization"
+      ],
+      "important_paths": [
+        "src-tauri/src/app/ - Core application logic",
+        "src-tauri/src/inject/ - JavaScript injected into webpages"
+      ],
+      "key_files": [
+        "src-tauri/src/lib.rs",
+        "src-tauri/src/util.rs",
+        "src-tauri/src/app/mod.rs",
+        "src-tauri/src/app/config.rs",
+        "src-tauri/src/app/invoke.rs",
+        "src-tauri/src/app/menu.rs",
+        "src-tauri/src/app/setup.rs",
+        "src-tauri/src/app/window.rs"
+      ],
+      "configuration": [
+        "src-tauri/tauri.conf.json",
+        "src-tauri/tauri.macos.conf.json",
+        "src-tauri/tauri.windows.conf.json",
+        "src-tauri/tauri.linux.conf.json",
+        "src-tauri/pake.json",
+        "src-tauri/Cargo.toml",
+        "src-tauri/capabilities/default.json"
+      ],
+      "coverage": {
+        "scanned": 15,
+        "total": 15,
+        "percent": 100
+      },
+      "gaps": []
+    },
+    {
+      "name": "inject",
+      "parent": "src-tauri",
+      "path": "src-tauri/src/inject/",
+      "language": "JavaScript",
+      "description": "Scripts injected into webpages at runtime",
+      "key_files": [
+        "src-tauri/src/inject/component.js",
+        "src-tauri/src/inject/event.js",
+        "src-tauri/src/inject/style.js",
+        "src-tauri/src/inject/auth.js",
+        "src-tauri/src/inject/theme_refresh.js",
+        "src-tauri/src/inject/custom.js"
+      ],
+      "coverage": {
+        "scanned": 6,
+        "total": 6,
+        "percent": 100
+      },
+      "gaps": []
+    },
+    {
+      "name": "tests",
+      "path": "tests/",
+      "language": "JavaScript",
+      "description": "Test suites for CLI and build process",
+      "entry_points": [
+        "tests/index.js"
+      ],
+      "key_files": [
+        "tests/index.js",
+        "tests/config.js",
+        "tests/release.js",
+        "tests/unit/file-finding.test.js",
+        "tests/integration/workflow-paths.test.js"
+      ],
+      "coverage": {
+        "scanned": 5,
+        "total": 5,
+        "percent": 100
+      },
+      "gaps": []
+    },
+    {
+      "name": "docs",
+      "path": "docs/",
+      "language": "Markdown",
+      "description": "User-facing documentation",
+      "important_paths": [
+        "docs/cli-usage.md",
+        "docs/advanced-usage.md",
+        "docs/github-actions-usage.md",
+        "docs/faq.md"
+      ],
+      "coverage": {
+        "scanned": 0,
+        "total": 8,
+        "percent": 0
+      },
+      "gaps": [
+        "Documentation files not scanned - low priority for code analysis"
+      ]
+    }
+  ],
+  "root_documentation": {
+    "path": "CLAUDE.md",
+    "sections": [
+      "Change Log",
+      "Core Philosophy & Standards",
+      "Project Overview",
+      "Tech Stack",
+      "Repository Architecture",
+      "Module Structure Diagram (Mermaid)",
+      "Module Index",
+      "Core Workflows",
+      "Implementation Details",
+      "Common AI Tasks",
+      "Coding Standards",
+      "AI Usage Guidelines",
+      "Testing Strategy",
+      "References"
+    ]
+  },
+  "module_documentation": [
+    {
+      "module": "bin",
+      "path": "bin/CLAUDE.md",
+      "sections": [
+        "Module Responsibility",
+        "Entry & Startup",
+        "External Interfaces",
+        "Key Dependencies & Configuration",
+        "Data Models",
+        "Testing & Quality",
+        "Common Tasks",
+        "Related Files",
+        "FAQ"
+      ]
+    },
+    {
+      "module": "src-tauri",
+      "path": "src-tauri/CLAUDE.md",
+      "sections": [
+        "Module Responsibility",
+        "Entry & Startup",
+        "External Interfaces (Tauri Commands)",
+        "Key Dependencies & Configuration",
+        "Data Models",
+        "Testing & Quality",
+        "Common Tasks",
+        "Module Subdirectories (app/, inject/)",
+        "Platform-Specific Behavior",
+        "Related Files",
+        "FAQ"
+      ]
+    }
+  ],
+  "next_steps": [
+    "Scan documentation files in docs/ for user-facing content (low priority)",
+    "Add more detailed API documentation for Tauri invoke commands",
+    "Document injection script APIs for custom user extensions",
+    "Consider adding architecture decision records (ADRs) for major design choices"
+  ],
+  "build_info": {
+    "cli": "pnpm run cli:build",
+    "app": "pnpm run build",
+    "test": "pnpm test",
+    "dev": "pnpm run dev"
+  }
+}

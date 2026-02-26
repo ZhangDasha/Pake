@@ -16,7 +16,7 @@
   },
   "bundle": {
     "macOS": {
-      "frameworks": ["CoreAudio", "AVFoundation"],
+      "frameworks": [],
       "minimumSystemVersion": "10.13"
     }
   },

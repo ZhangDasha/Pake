@@ -4,6 +4,7 @@
     "active": true,
     "targets": ["dmg"],
     "macOS": {
+      "infoPlist": "./Info.plist",
       "signingIdentity": "-",
       "hardenedRuntime": true,
       "dmg": {

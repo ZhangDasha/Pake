@@ -2,8 +2,8 @@ import { PakeCliOptions } from './types.js';
 
 export const DEFAULT_PAKE_OPTIONS: PakeCliOptions = {
   icon: '',
-  height: 780,
-  width: 1200,
+  height: 1080,
+  width: 1920,
   fullscreen: false,
   maximize: false,
   resizable: true,
@@ -53,7 +53,6 @@ export const DEFAULT_PAKE_OPTIONS: PakeCliOptions = {
 // Just for cli development
 export const DEFAULT_DEV_PAKE_OPTIONS: PakeCliOptions & { url: string } = {
   ...DEFAULT_PAKE_OPTIONS,
-  url: 'https://weekly.tw93.fun/en',
-  name: 'Weekly',
-  hideTitleBar: true,
+  url: 'https://ai-teaching.qa.iol8.net',
+  name: 'ai-teaching-student',
 };

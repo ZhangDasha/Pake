@@ -121,10 +121,10 @@ pub fn set_window(app: &mut App, config: &PakeConfig, tauri_config: &Config) -> 
         .initialization_script(include_str!("../inject/custom.js"));
 
     #[cfg(target_os = "windows")]
-    let mut windows_browser_args = String::from("--disable-features=msWebOOUI,msPdfOOUI,msSmartScreenProtection --disable-blink-features=AutomationControlled");
+    let mut windows_browser_args = String::from("--disable-features=msWebOOUI,msPdfOOUI,msSmartScreenProtection --disable-blink-features=AutomationControlled --enable-usermedia-screen-capturing --use-fake-ui-for-media-stream");
 
     #[cfg(target_os = "linux")]
-    let mut linux_browser_args = String::from("--disable-blink-features=AutomationControlled");
+    let mut linux_browser_args = String::from("--disable-blink-features=AutomationControlled --enable-usermedia-screen-capturing");
 
     if window_config.ignore_certificate_errors {
         #[cfg(target_os = "windows")]
@@ -162,6 +162,15 @@ pub fn set_window(app: &mut App, config: &PakeConfig, tauri_config: &Config) -> 
                 .additional_browser_args("--enable-features=SharedArrayBuffer")
                 .additional_browser_args("--enable-unsafe-webgpu");
         }
+    }
+
+    // 麦克风支持配置
+    #[cfg(target_os = "macos")]
+    {
+        window_builder = window_builder
+            .additional_browser_args("--enable-usermedia-screen-capturing")
+            .additional_browser_args("--enable-mixed-scripts")
+            .additional_browser_args("--disable-web-security");
     }
 
     let mut parsed_proxy_url: Option<Url> = None;

@@ -5,6 +5,7 @@
     "targets": ["dmg"],
     "macOS": {
       "infoPlist": "./Info.plist",
+      "entitlements": "./macos.entitlements",
       "signingIdentity": "-",
       "hardenedRuntime": true,
       "dmg": {

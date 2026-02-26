@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<!-- 麦克风访问权限 -->
+	<key>com.apple.security.device.audio-input</key>
+	<true/>
+
+	<!-- 网络访问权限（Pake 作为浏览器包装器需要） -->
+	<key>com.apple.security.network.client</key>
+	<true/>
+
+	<!-- 允许任意加载（用于 HTTP 请求，已在 Info.plist 中配置） -->
+	<key>com.apple.security.network.server</key>
+	<true/>
+
+	<!-- 禁用应用沙箱（如果 hardened runtime 与沙箱冲突可以保留此注释） -->
+	<!-- <key>com.apple.security.app-sandbox</key> -->
+	<!-- <false/> -->
+</dict>
+</plist>

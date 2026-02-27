@@ -28,6 +28,7 @@ on:
       resizable:
         description: "Enable window resizing"
         required: false
+        type: boolean
         default: true
       width:
         description: "Window width (px)"

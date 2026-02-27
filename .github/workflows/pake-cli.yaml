@@ -25,14 +25,18 @@ on:
       icon:
         description: "Icon URL, auto-fetch if empty"
         required: false
+      resizable:
+        description: "Enable window resizing"
+        required: false
+        default: true
       width:
         description: "Window width (px)"
         required: false
-        default: "1200"
+        default: "430"
       height:
         description: "Window height (px)"
         required: false
-        default: "780"
+        default: "932"
       fullscreen:
         description: "Start in fullscreen mode"
         required: false
@@ -116,6 +120,10 @@ jobs:
             ARGS+=("--fullscreen")
           fi
 
+          if [ "${{ inputs.resizable }}" == "false" ]; then
+            ARGS+=("--no-resizable")
+          fi
+
           if [ "${{ inputs.hide_title_bar }}" == "true" ]; then
             ARGS+=("--hide-title-bar")
           fi
@@ -152,6 +160,10 @@ jobs:
 
           if ("${{ inputs.fullscreen }}" -eq "true") {
             $args += "--fullscreen"
+          }
+
+          if ("${{ inputs.resizable }}" -eq "false") {
+            $args += "--no-resizable"
           }
 
           if ("${{ inputs.hide_title_bar }}" -eq "true") {

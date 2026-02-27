@@ -54,6 +54,9 @@ export const DEFAULT_PAKE_OPTIONS: PakeCliOptions = {
 export const DEFAULT_DEV_PAKE_OPTIONS: PakeCliOptions & { url: string } = {
   ...DEFAULT_PAKE_OPTIONS,
   url: 'https://ai-teaching.qa.iol8.net',
-  name: 'ai-teaching-student',
+  name: 'ai-teachingcn-student',
   hideTitleBar: false,
+  width: 430,
+  height: 932 ,
+  resizable: false,
 };
